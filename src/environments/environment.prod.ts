@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.staging.example.com'
+  apiUrl: 'https://provedatos-fs-test.onrender.com/api/'
 };
