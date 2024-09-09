@@ -1,0 +1,60 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Grupo de formularios */
+.form-group {
+  display: flex;
+  flex-direction: column; /* Cambia el layout a vertical */
+  gap: 10px; /* Espacio entre los elementos */
+  width: 100%; /* Asegura que use todo el ancho del contenedor */
+}
+
+/* Área de arrastre y su contenido */
+.file-drop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #ccc; /* Borde de área de arrastre */
+  padding: 10px;
+  width: 100%; /* Asegura que se ajuste al 100% del espacio disponible */
+  min-height: 150px; /* Ajusta la altura mínima */
+}
+
+/* Campo del formulario que ocupa todo el ancho */
+.mat-form-field.full-width {
+  flex: 1; /* Ocupa todo el espacio disponible */
+}
+
+/* Mantén flexibilidad entre los elementos del formulario */
+.mat-form-field, .file-drop {
+  flex: 1;
+}
+
+/* Contenedor de las imágenes subidas */
+.upload-preview {
+  display: flex;
+  justify-content: space-around; /* Distribuye las miniaturas uniformemente */
+  gap: 10px; /* Añade espacio entre las miniaturas */
+  width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+}
+
+/* Estilo de las imágenes previsualizadas */
+.upload-preview img {
+  width: 100px; /* Tamaño fijo para las miniaturas */
+  height: 100px;
+  object-fit: cover; /* Mantiene el aspecto de la imagen */
+  border-radius: 5px;
+}
+
+/* Tabla de archivos cargados (inicialmente oculta) */
+.upload-table {
+  display: none; /* Oculta inicialmente la tabla de archivos */
+}
+
+ngx-file-drop {
+  height: 100%; /* Ajusta la altura del área de arrastre */
+  min-width: 200px; /* Ajusta el ancho mínimo del área de arrastre si es necesario */
+}
