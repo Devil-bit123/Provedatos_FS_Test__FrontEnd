@@ -13,6 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { EmpleadoDialogComponent } from '../empleado-dialog/empleado-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Router, RouterLink, } from '@angular/router';
+
 
 @Component({
   selector: 'app-empleado-index',
@@ -28,15 +30,18 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatIconModule,
     MatDialogModule,
     EmpleadoDialogComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    RouterLink
+
+
   ],
   templateUrl: './empleado-index.component.html',
   styleUrls: ['./empleado-index.component.css'],
 
 })
 export class EmpleadoIndexComponent implements AfterViewInit {
-  displayedColumns: string[] = ['Nombre', 'Codigo', 'Estado', 'Acciones'];
-  dataSource: MatTableDataSource<Empleado>;
+  displayedColumns: string[] = ['nombres', 'id', 'estado','acciones' ];
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -47,19 +52,26 @@ export class EmpleadoIndexComponent implements AfterViewInit {
 
   public itsLoading=false;
 
-  constructor( private empleadosService:EmpleadoService,private matPaginatorIntl: MatPaginatorIntl) {
+  constructor( private empleadosService:EmpleadoService,private matPaginatorIntl: MatPaginatorIntl,
+    private router: Router
+  ) {
     this.dataSource = new MatTableDataSource();
     this.customizePaginatorLabels();
     this.GetEmpledos();
   }
 
   ngAfterViewInit() {
+    console.log('Paginator:', this.paginator);
+    console.log('Sort:', this.sort);
+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.paginator.page.subscribe(() => {
-      this.customizePaginatorLabels();
-    });
+
+    // Verifica que sort está configurado
+    console.log('DataSource Sort:', this.dataSource.sort);
   }
+
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -73,6 +85,7 @@ export class EmpleadoIndexComponent implements AfterViewInit {
     this._empleadosService.GetEmpleados().subscribe({
       next:(empleados)=>{
         this.dataSource.data=empleados;
+
         //console.log(this.dataSource.data);
       },error:(error)=>{
         console.error(error);
@@ -104,7 +117,10 @@ export class EmpleadoIndexComponent implements AfterViewInit {
     });
   }
 
-
+  navigateToReporte() {
+    this.router.navigate(['reporte']);
+  }
 
 }
+
 
