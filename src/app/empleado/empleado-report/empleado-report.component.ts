@@ -13,11 +13,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { EmpleadoDialogComponent } from '../empleado-dialog/empleado-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { Router, RouterLink, } from '@angular/router';
-
+import { Router } from '@angular/router';
+import moment from 'moment';
 
 @Component({
-  selector: 'app-empleado-index',
+  selector: 'app-empleado-report',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -30,18 +30,15 @@ import { Router, RouterLink, } from '@angular/router';
     MatIconModule,
     MatDialogModule,
     EmpleadoDialogComponent,
-    MatProgressSpinnerModule,
-    RouterLink
-
-
+    MatProgressSpinnerModule
   ],
-  templateUrl: './empleado-index.component.html',
-  styleUrls: ['./empleado-index.component.css'],
-
+  templateUrl: './empleado-report.component.html',
+  styleUrl: './empleado-report.component.css'
 })
-export class EmpleadoIndexComponent implements AfterViewInit {
-  displayedColumns: string[] = ['nombres', 'id', 'estado','acciones' ];
-  dataSource: MatTableDataSource<any>;
+export class EmpleadoReportComponent {
+
+  displayedColumns: string[] = ['nombres', 'cedula', 'id','nombre_provincia','fecha_nacimiento','email','observaciones','fecha_ingreso','cargo','departamento','provincia_laboral','sueldo','jornada_parcial','observaciones_laborales'];
+  dataSource: MatTableDataSource<Empleado>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -61,17 +58,12 @@ export class EmpleadoIndexComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('Paginator:', this.paginator);
-    console.log('Sort:', this.sort);
-
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
-    // Verifica que sort está configurado
-    console.log('DataSource Sort:', this.dataSource.sort);
+    this.paginator.page.subscribe(() => {
+      this.customizePaginatorLabels();
+    });
   }
-
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -85,7 +77,6 @@ export class EmpleadoIndexComponent implements AfterViewInit {
     this._empleadosService.GetEmpleados().subscribe({
       next:(empleados)=>{
         this.dataSource.data=empleados;
-
         //console.log(this.dataSource.data);
       },error:(error)=>{
         console.error(error);
@@ -117,10 +108,25 @@ export class EmpleadoIndexComponent implements AfterViewInit {
     });
   }
 
-  navigateToReporte() {
-    this.router.navigate(['reporte']);
+  navigateToIndex() {
+    this.router.navigate(['']);
   }
 
+  downloadFile() {
+
+    var now = moment();
+    var fileName = "Reporte_Empleados_"+now.toString()+"_.xlsx";
+
+    this._empleadosService.downloadReport().subscribe(blob => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = fileName; // Cambia el nombre del archivo según corresponda
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
+  }
+
+
+
 }
-
-

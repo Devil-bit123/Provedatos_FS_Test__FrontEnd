@@ -1,0 +1,129 @@
+<ng-container *ngIf="itsLoading; else elseTemplate">
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+
+<ng-template #elseTemplate>
+
+  <div class="container">
+    <h2>Módulo Reporte</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Filtro</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ingrese termino de busqueda"
+        #input
+      />
+    </mat-form-field>
+
+    <div class="table-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="nombres">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let row" data-label="nombres">
+            {{ row.nombres }} {{ row.apellidos }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cedula">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cedula</th>
+          <td mat-cell *matCellDef="let row" data-label="cedula">{{ row.cedula }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo</th>
+          <td mat-cell *matCellDef="let row" data-label="id">{{ row.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre_provincia">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia</th>
+          <td mat-cell *matCellDef="let row" data-label="provincia">{{ row.provincia.nombre_provincia }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="fecha_nacimiento">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de nacimiento</th>
+          <td mat-cell *matCellDef="let row" data-label="fecha_nacimiento">{{ row.fecha_nacimiento }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let row" data-label="email">{{ row.email }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="observaciones">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones</th>
+          <td mat-cell *matCellDef="let row" data-label="observaciones">{{ row.observaciones }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="fecha_ingreso">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de ingreso</th>
+          <td mat-cell *matCellDef="let row" data-label="fecha_ingreso">{{ row.fecha_ingreso }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cargo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cargo</th>
+          <td mat-cell *matCellDef="let row" data-label="cargo">{{ row.cargo }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="departamento">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Departamento</th>
+          <td mat-cell *matCellDef="let row" data-label="departamento">{{ row.departamento }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="provincia_laboral">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Provincia laboral</th>
+          <td mat-cell *matCellDef="let row" data-label="provincia_laboral">{{ row.provincia_laboral.nombre_provincia }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="sueldo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sueldo</th>
+          <td mat-cell *matCellDef="let row" data-label="sueldo">{{ row.sueldo }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="jornada_parcial">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Jornada parcial</th>
+          <td mat-cell *matCellDef="let row" data-label="jornada_parcial">{{ row.jornada_parcial ? 'Si':'No' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="observaciones_laborales">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones laborales</th>
+          <td mat-cell *matCellDef="let row" data-label="observaciones_laborales">{{ row.observaciones_laborales  }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page of users"
+      ></mat-paginator>
+
+      <div class="action-buttons" style="margin-bottom: 5px;">
+
+        <button style="background-color: #d95350;" (click)="downloadFile()" mat-flat-button>Descargar</button>
+        <button style="background-color: #d95350;" (click)="navigateToIndex()" mat-flat-button>Salir</button>
+
+      </div>
+
+    </div>
+  </div>
+
+</ng-template>
+
+
+
+
