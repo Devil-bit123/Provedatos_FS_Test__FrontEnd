@@ -4,11 +4,16 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 
+import { provideRouter, RouterModule } from '@angular/router';
+import { routes } from './app/app.routes';
+
 bootstrapApplication(AppComponent, {
   ...appConfig,
   providers: [
+    provideRouter(routes),
     provideAnimations(),
-    provideHttpClient()
+    provideHttpClient(),
+
     // Add other providers here if needed
   ],
 })

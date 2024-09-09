@@ -26,7 +26,6 @@ import {
 import { CommonModule } from '@angular/common';
 import { ProvinciaService } from '../../core/services/Provincia/provincia.service';
 import { Provincia } from '../../core/interfaces/Provincia/provincia';
-import { cedulaValidator } from '../../core/validators/cedula-validator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
