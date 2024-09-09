@@ -13,7 +13,7 @@ export class ProvinciaService {
   private http = inject(HttpClient)
 
   constructor() {
-    console.log(this.baseUrl);
+    //console.log(this.baseUrl);
   }
 
   GetProvincias(): Observable<Provincia[]> {
