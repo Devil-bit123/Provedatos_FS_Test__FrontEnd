@@ -57,14 +57,13 @@
           </div>
         </mat-form-field>
         <!-- provincia -->
+
         <mat-form-field>
           <mat-label>Provincia</mat-label>
           <mat-select formControlName="provincia">
-            @for (provincia of provincias; track $index) {
-            <mat-option value="{{ provincia.id }}">{{
-              provincia.nombre_provincia
-            }}</mat-option>
-            }
+            <mat-option *ngFor="let provincia of provincias" [value]="provincia.id">
+              {{ provincia.nombre_provincia }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -212,11 +211,9 @@
         <mat-form-field>
           <mat-label>Provincia</mat-label>
           <mat-select formControlName="provincia_laboral">
-            @for (provincia of provincias; track $index) {
-            <mat-option value="{{ provincia.id }}">{{
-              provincia.nombre_provincia
-            }}</mat-option>
-            }
+            <mat-option *ngFor="let provincia of provincias" [value]="provincia.id">
+              {{ provincia.nombre_provincia }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <!-- Sueldo -->

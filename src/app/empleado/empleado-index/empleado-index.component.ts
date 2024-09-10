@@ -61,14 +61,14 @@ export class EmpleadoIndexComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('Paginator:', this.paginator);
-    console.log('Sort:', this.sort);
+    //console.log('Paginator:', this.paginator);
+    //console.log('Sort:', this.sort);
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
     // Verifica que sort está configurado
-    console.log('DataSource Sort:', this.dataSource.sort);
+    //console.log('DataSource Sort:', this.dataSource.sort);
   }
 
 

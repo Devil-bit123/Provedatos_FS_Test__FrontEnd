@@ -113,7 +113,7 @@ export class EmpleadoDialogComponent implements OnInit {
     this.accion = data.accion;
     this.empleadoARecibir = data.empleadoARecibir;
     this.getProvincias();
-    //console.log(this.accion);
+    //console.log(this.empleadoARecibir );
   }
 
   ngOnInit(): void {
@@ -134,7 +134,7 @@ export class EmpleadoDialogComponent implements OnInit {
             nombres: this.empleadoARecibir.nombres,
             apellidos: this.empleadoARecibir.apellidos,
             cedula: this.empleadoARecibir.cedula,
-            provincia: this.empleadoARecibir.provincia,
+            provincia: this.empleadoARecibir.provincia.id,
             fecha_nacimiento: this.empleadoARecibir.fecha_nacimiento,
             email: this.empleadoARecibir.email,
             observaciones: this.empleadoARecibir.observaciones,
@@ -142,7 +142,7 @@ export class EmpleadoDialogComponent implements OnInit {
             fecha_ingreso: this.empleadoARecibir.fecha_ingreso,
             cargo: this.empleadoARecibir.cargo,
             departamento: this.empleadoARecibir.departamento,
-            provincia_laboral: this.empleadoARecibir.provincia_laboral,
+            provincia_laboral: this.empleadoARecibir.provincia_laboral.id,
             sueldo: this.empleadoARecibir.sueldo,
             jornada_parcial: this.empleadoARecibir.jornada_parcial,
             observaciones_laborales:
@@ -164,7 +164,7 @@ export class EmpleadoDialogComponent implements OnInit {
             nombres: this.empleadoARecibir.nombres,
             apellidos: this.empleadoARecibir.apellidos,
             cedula: this.empleadoARecibir.cedula,
-            provincia: this.empleadoARecibir.provincia,
+            provincia: this.empleadoARecibir.provincia.id,
             fecha_nacimiento: this.empleadoARecibir.fecha_nacimiento,
             email: this.empleadoARecibir.email,
             observaciones: this.empleadoARecibir.observaciones,
@@ -172,7 +172,7 @@ export class EmpleadoDialogComponent implements OnInit {
             fecha_ingreso: this.empleadoARecibir.fecha_ingreso,
             cargo: this.empleadoARecibir.cargo,
             departamento: this.empleadoARecibir.departamento,
-            provincia_laboral: this.empleadoARecibir.provincia_laboral,
+            provincia_laboral: this.empleadoARecibir.provincia_laboral.id,
             sueldo: this.empleadoARecibir.sueldo,
             jornada_parcial: this.empleadoARecibir.jornada_parcial,
             observaciones_laborales:
@@ -186,7 +186,7 @@ export class EmpleadoDialogComponent implements OnInit {
         this.textoBotonOkModal = 'Ok';
         this.inDetailOrDelete = true;
         this.fotografiaActual = `${environment.imagesUrl}${this.empleadoARecibir.fotografia}`;
-        //console.log(this.fotografiaActual);
+        //console.log(this.inDetailOrDelete);
         this.setFormControlsDisabledState(true);
         if (this.empleadoARecibir) {
           this.formEmpleado.patchValue({
@@ -194,7 +194,7 @@ export class EmpleadoDialogComponent implements OnInit {
             nombres: this.empleadoARecibir.nombres,
             apellidos: this.empleadoARecibir.apellidos,
             cedula: this.empleadoARecibir.cedula,
-            provincia: this.empleadoARecibir.provincia,
+            provincia: this.empleadoARecibir.provincia.id,
             fecha_nacimiento: this.empleadoARecibir.fecha_nacimiento,
             email: this.empleadoARecibir.email,
             observaciones: this.empleadoARecibir.observaciones,
@@ -202,7 +202,7 @@ export class EmpleadoDialogComponent implements OnInit {
             fecha_ingreso: this.empleadoARecibir.fecha_ingreso,
             cargo: this.empleadoARecibir.cargo,
             departamento: this.empleadoARecibir.departamento,
-            provincia_laboral: this.empleadoARecibir.provincia_laboral,
+            provincia_laboral: this.empleadoARecibir.provincia_laboral.id,
             sueldo: this.empleadoARecibir.sueldo,
             jornada_parcial: this.empleadoARecibir.jornada_parcial,
             observaciones_laborales:
